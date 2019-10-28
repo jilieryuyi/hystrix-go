@@ -118,14 +118,6 @@ func (circuit *CircuitBreaker) AllowRequest() bool {
 	return !circuit.IsOpen() || circuit.allowSingleTest()
 }
 
-func (circuit *CircuitBreaker) SetMax(max int) {
-	circuit.executorPool.Max = max
-}
-
-func (circuit *CircuitBreaker) GetMax() int {
-	return circuit.executorPool.Max
-}
-
 func (circuit *CircuitBreaker) allowSingleTest() bool {
 	circuit.mutex.RLock()
 	defer circuit.mutex.RUnlock()
